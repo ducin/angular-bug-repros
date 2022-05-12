@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'itcorpo-fadebox',
-  template: `<div class="fade-box" [ngClass]="{'fade-in': fadeIn, 'fade-out': fadeOut}">
+  template: `<div class="fade-box" [ngClass]="{'fade-in': !currentlyFadeOut, 'fade-out': currentlyFadeOut}">
   <ng-content></ng-content>
 </div>
 `,
@@ -10,14 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FadeboxComponent implements OnInit {
 
-  public fadeIn = true
-  public fadeOut = false
+  public fadeOutON = false
+  public currentlyFadeOut = true
 
   constructor() {}
 
   ngOnInit() {
-    // setInterval(() => this.fadeIn = !this.fadeIn, 3000)
-    setInterval(() => this.fadeOut = !this.fadeOut, 3000)
+    if (this.fadeOutON){
+      setInterval(() => this.currentlyFadeOut = !this.currentlyFadeOut, 3000)
+    }
   }
 
 }
