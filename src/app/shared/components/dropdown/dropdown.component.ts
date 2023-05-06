@@ -25,7 +25,7 @@ export class DropdownComponent {
     }
   }
 
-  onChange(value: string){
-    this.valueChange.emit(value)
+  onChange(value: Event){
+    this.valueChange.emit(String(value))
   }
 }
