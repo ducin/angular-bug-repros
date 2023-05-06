@@ -12,6 +12,8 @@ import { Nationality } from 'src/app/typedef';
 })
 export class AppComponent {
 
+  title = 'IT Corpo Angular App'
+
   geoData$: Observable<{ [k: string]: string }>
 
   constructor(
