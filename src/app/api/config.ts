@@ -1,8 +1,5 @@
-type AppConfig = {
-  apiURL: string
-}
+import { environment } from "src/environments/environment"
 
-const config: AppConfig = require('../../../config.json')
-
-export const { apiURL } = config
+export const { apiURL } = environment
 export const MAX_PAGE_SIZE = 50
+export const RETRY_DELAY = 2500
