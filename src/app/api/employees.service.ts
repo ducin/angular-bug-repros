@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { apiURL } from './config';
 import { applyQueryString } from './queryString';
 
-import { Employee, Nationality } from 'src/app/typedef';
+import { Employee, Nationality } from 'src/app/api/dto';
 
 export type EmployeeCriteria = {
   nationality?: Nationality

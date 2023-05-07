@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { apiURL } from './config';
-import { Geo } from 'src/app/typedef';
+import { Geo } from 'src/app/api/dto';
 
 @Injectable({
   providedIn: 'root'

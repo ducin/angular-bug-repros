@@ -1,4 +1,4 @@
-import { Employee } from "../typedef";
+import { Employee } from "./dto";
 
 export const mockEmployees: Employee[] = [{
     id: 1,

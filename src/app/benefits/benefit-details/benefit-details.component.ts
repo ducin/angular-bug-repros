@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Benefit } from 'src/app/typedef';
+import { Benefit } from 'src/app/api/dto';
 
 @Component({
   selector: 'itcorpo-benefit-details',

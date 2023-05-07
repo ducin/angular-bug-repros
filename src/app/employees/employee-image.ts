@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Employee } from 'src/app/typedef';
+import { Employee } from 'src/app/api/dto';
 import { apiURL } from 'src/app/api/config';
 
 @Component({

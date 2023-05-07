@@ -3,7 +3,7 @@ import { ProjectsService } from 'src/app/api/projects.service';
 
 import { Observable } from 'rxjs';
 
-import { Project } from 'src/app/typedef';
+import { Project } from 'src/app/api/dto';
 
 @Component({
   selector: 'itcorpo-project-listing',

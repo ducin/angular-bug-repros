@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { GeoService } from './api/geo.service';
-import { Nationality } from 'src/app/typedef';
+import { Nationality } from 'src/app/api/dto';
 
 @Component({
   selector: 'itcorpo-root',

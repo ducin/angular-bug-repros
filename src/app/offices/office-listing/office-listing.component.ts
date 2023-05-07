@@ -3,7 +3,7 @@ import { OfficesService } from 'src/app/api/offices.service';
 
 import { Observable } from 'rxjs';
 
-import { Office } from 'src/app/typedef';
+import { Office } from 'src/app/api/dto';
 
 @Component({
   selector: 'itcorpo-office-listing',

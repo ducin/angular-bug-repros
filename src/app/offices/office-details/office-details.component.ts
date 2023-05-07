@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Office } from 'src/app/typedef';
+import { Office } from 'src/app/api/dto';
 
 @Component({
   selector: 'itcorpo-office-details',

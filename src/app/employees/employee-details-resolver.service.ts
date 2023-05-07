@@ -4,7 +4,7 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/r
 import { Observable } from 'rxjs';
 
 import { EmployeesService } from '../api/employees.service';
-import { Employee } from 'src/app/typedef';
+import { Employee } from 'src/app/api/dto';
 
 @Injectable({
   providedIn: 'root'

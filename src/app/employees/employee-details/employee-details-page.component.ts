@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Employee } from 'src/app/typedef';
+import { Employee } from 'src/app/api/dto';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

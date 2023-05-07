@@ -1,5 +1,5 @@
 
-import { Project } from 'src/app/typedef';
+import { Project } from 'src/app/api/dto';
 
 import { hashCode } from '../../utils/hash';
 

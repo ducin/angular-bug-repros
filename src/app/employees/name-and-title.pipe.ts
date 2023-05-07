@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { Employee } from 'src/app/typedef';
+import { Employee } from 'src/app/api/dto';
 
 @Pipe({
   name: 'nameAndTitle'

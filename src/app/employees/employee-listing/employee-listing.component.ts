@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { Employee } from 'src/app/typedef';
+import { Employee } from 'src/app/api/dto';
 
 import { EmployeesService } from 'src/app/api/employees.service';
 
