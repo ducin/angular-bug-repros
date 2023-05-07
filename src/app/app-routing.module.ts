@@ -10,7 +10,7 @@ import { EmployeeListingComponent } from './employees/employee-listing/employee-
 import { BenefitListingComponent } from './benefits/benefit-listing/benefit-listing.component';
 import { DashboardComponent } from './finances/dashboard/dashboard.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: 'license',
     component: LicenseComponent,
