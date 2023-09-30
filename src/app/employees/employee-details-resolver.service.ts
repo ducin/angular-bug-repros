@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 import { Observable } from 'rxjs';
 
@@ -9,7 +9,7 @@ import { Employee } from 'src/app/api/dto';
 @Injectable({
   providedIn: 'root'
 })
-export class EmployeeDetailsResolverService implements Resolve<Employee> {
+export class EmployeeDetailsResolverService  {
 
   constructor(
     private employeeSvc: EmployeesService,
