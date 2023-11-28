@@ -12,6 +12,10 @@ import { DashboardComponent } from './finances/dashboard/dashboard.component';
 
 export const routes: Routes = [
   {
+    path: 'home',
+    component: HomeComponent,
+  },
+  {
     path: 'license',
     component: LicenseComponent,
   },
@@ -35,12 +39,6 @@ export const routes: Routes = [
     path: 'finances',
     component: DashboardComponent
   },
-  {
-    path: '',
-    redirectTo: '',
-    pathMatch: 'full',
-    component: HomeComponent,
-  }
 ];
 
 @NgModule({
