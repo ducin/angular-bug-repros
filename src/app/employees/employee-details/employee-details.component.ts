@@ -8,5 +8,5 @@ import { Employee } from 'src/app/api/dto';
 })
 export class EmployeeDetailsComponent {
   @Input()
-  employee: Employee
+  employee!: Employee
 }

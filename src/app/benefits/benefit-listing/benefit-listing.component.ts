@@ -11,7 +11,7 @@ import { Benefit } from 'src/app/api/dto';
   styleUrls: ['./benefit-listing.component.css']
 })
 export class BenefitListingComponent implements OnInit {
-  benefits$: Observable<Benefit[]>
+  benefits$!: Observable<Benefit[]>
 
   constructor(
     private benefitSvc: BenefitsService,

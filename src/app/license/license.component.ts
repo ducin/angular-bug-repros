@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./license.component.css']
 })
 export class LicenseComponent {
-  content$: Observable<string>;
+  content$!: Observable<string | null>;
 
   constructor(
     private licenseSvc: LicenseService

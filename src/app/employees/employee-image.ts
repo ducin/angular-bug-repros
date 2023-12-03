@@ -9,7 +9,7 @@ import { apiURL } from 'src/app/api/config';
 })
 export class EmployeeImageComponent {
   @Input()
-  employee: Employee
+  employee!: Employee
 
   url(){
     return `${apiURL}/images/avatars/${this.employee.imgURL}`

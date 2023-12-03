@@ -11,7 +11,7 @@ import { Office } from 'src/app/api/dto';
   styleUrls: ['./office-listing.component.css']
 })
 export class OfficeListingComponent implements OnInit {
-  offices$: Observable<Office[]>
+  offices$!: Observable<Office[]>
 
   constructor(
     private officeSvc: OfficesService,

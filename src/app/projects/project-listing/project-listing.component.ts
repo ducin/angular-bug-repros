@@ -11,7 +11,7 @@ import { Project } from 'src/app/api/dto';
   styleUrls: ['./project-listing.component.css']
 })
 export class ProjectListingComponent implements OnInit {
-  projects$: Observable<Project[]>
+  projects$!: Observable<Project[]>
 
   constructor(
     private projectSvc: ProjectsService,

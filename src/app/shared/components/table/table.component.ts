@@ -7,8 +7,8 @@ import { Component, Input } from '@angular/core';
 })
 export class TableComponent {
   @Input()
-  headers: string[]
+  headers!: string[]
 
   @Input()
-  rows: string[][]
+  rows!: string[][]
 }

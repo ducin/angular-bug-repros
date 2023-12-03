@@ -20,5 +20,5 @@ img.thumb:hover {
 })
 export class ImageComponent {
   @Input()
-  src: string
+  src!: string
 }

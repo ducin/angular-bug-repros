@@ -8,5 +8,5 @@ import { Office } from 'src/app/api/dto';
 })
 export class OfficeDetailsComponent {
   @Input()
-  office: Office
+  office!: Office
 }

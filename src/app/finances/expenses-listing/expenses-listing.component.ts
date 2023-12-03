@@ -9,5 +9,5 @@ import { Expense } from 'src/app/api/dto';
 })
 export class ExpensesListingComponent {
   @Input()
-  expenses: Expense[]
+  expenses!: Expense[]
 }

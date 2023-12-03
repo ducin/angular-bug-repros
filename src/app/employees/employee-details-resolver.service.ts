@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
-import { Observable } from 'rxjs';
+import { NEVER, Observable } from 'rxjs';
 
 import { EmployeesService } from '../api/employees.service';
 import { Employee } from 'src/app/api/dto';
@@ -15,8 +15,12 @@ export class EmployeeDetailsResolverService  {
     private employeeSvc: EmployeesService,
   ) { }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Employee> {
-    let id = parseInt(route.paramMap.get('id'))
-    return this.employeeSvc.getEmployee(id)
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Employee | void> {
+    const id = route.paramMap.get('id')
+    if (id){
+      return this.employeeSvc.getEmployee(parseInt(id))
+    } else {
+      return NEVER
+    }
   }
 }

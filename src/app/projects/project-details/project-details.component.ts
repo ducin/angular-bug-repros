@@ -8,7 +8,7 @@ import { projectImageUrl } from './project-image';
 })
 export class ProjectDetailsComponent {
   @Input()
-  project: Project
+  project!: Project
 
   url(){
     return projectImageUrl(this.project)

@@ -17,10 +17,10 @@ import { Expense } from 'src/app/api/dto';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  monthlyCost$: Observable<number>
-  yearlyCost$: Observable<number>
+  monthlyCost$!: Observable<number>
+  yearlyCost$!: Observable<number>
 
-  expenses$: Observable<Expense[]>
+  expenses$!: Observable<Expense[]>
 
   constructor(
     private officesSvc: OfficesService,
@@ -48,23 +48,23 @@ export class DashboardComponent implements OnInit {
     rows: [
       [
         'Office Rentals',
-        this.currencyPipe.transform(this.monthly, "EUR"),
-        this.currencyPipe.transform(this.yearly, "EUR"),
+        this.currencyPipe.transform(this.monthly, "EUR")!,
+        this.currencyPipe.transform(this.yearly, "EUR")!,
       ],
       [
         'Employee Salaries',
-        this.currencyPipe.transform(this.monthly, "EUR"),
-        this.currencyPipe.transform(this.yearly, "EUR"),
+        this.currencyPipe.transform(this.monthly, "EUR")!,
+        this.currencyPipe.transform(this.yearly, "EUR")!,
       ],
       [
         'Employee Benefits',
-        this.currencyPipe.transform(this.monthly, "EUR"),
-        this.currencyPipe.transform(this.yearly, "EUR"),
+        this.currencyPipe.transform(this.monthly, "EUR")!,
+        this.currencyPipe.transform(this.yearly, "EUR")!,
       ],
       [
         'Total Expenses',
-        this.currencyPipe.transform(this.monthly, "EUR"),
-        this.currencyPipe.transform(this.yearly, "EUR"),
+        this.currencyPipe.transform(this.monthly, "EUR")!,
+        this.currencyPipe.transform(this.yearly, "EUR")!,
       ],
     ]
   }

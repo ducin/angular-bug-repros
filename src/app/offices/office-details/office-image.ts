@@ -9,7 +9,7 @@ import { apiURL } from 'src/app/api/config';
 })
 export class OfficeImageComponent {
   @Input()
-  office: Office
+  office!: Office
 
   url(){
     return `${apiURL}/images/offices/${this.office.imgURL}`

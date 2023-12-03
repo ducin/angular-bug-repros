@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   template: `<itcorpo-employee-details [employee]="employee"></itcorpo-employee-details>`
 })
 export class EmployeeDetailsPageComponent {
-  employee: Employee
+  employee!: Employee
 
   constructor(
     private route: ActivatedRoute

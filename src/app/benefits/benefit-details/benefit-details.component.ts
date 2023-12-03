@@ -8,5 +8,5 @@ import { Benefit } from 'src/app/api/dto';
 })
 export class BenefitDetailsComponent {
   @Input()
-  benefit: Benefit
+  benefit!: Benefit
 }

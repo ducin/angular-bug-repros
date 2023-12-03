@@ -12,7 +12,7 @@ import { EmployeesService } from 'src/app/api/employees.service';
   styleUrls: ['./employee-listing.component.css']
 })
 export class EmployeeListingComponent implements OnInit {
-  employees$: Observable<Employee[]>
+  employees$!: Observable<Employee[]>
 
   sidebarCollapsed: boolean = true
 

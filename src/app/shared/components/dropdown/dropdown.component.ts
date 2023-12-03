@@ -11,9 +11,9 @@ export type DropdownOptions = {
 })
 export class DropdownComponent {
   @Input()
-  options: DropdownOptions
+  options!: DropdownOptions
 
-  entries: { key: string, value: string }[]
+  entries!: { key: string, value: string }[]
 
   @Output()
   private valueChange = new EventEmitter<string>()

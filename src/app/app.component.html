@@ -15,7 +15,7 @@
   <a class="menu-link" routerLink="/employees" routerLinkActive="active">👩‍💼 Employees</a> |
   <a class="menu-link" routerLink="/benefits" routerLinkActive="active">🎳 Benefits</a> |
 
-  <itcorpo-dropdown [options]="geoData$ | async"></itcorpo-dropdown>
+  <itcorpo-dropdown [options]="(geoData$ | async)!"></itcorpo-dropdown>
 </nav>
 
 <router-outlet></router-outlet>

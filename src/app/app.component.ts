@@ -14,7 +14,7 @@ export class AppComponent {
 
   title = 'IT Corpo Angular App'
 
-  geoData$: Observable<{ [k: string]: string }>
+  geoData$!: Observable<{ [k: string]: string }>
 
   constructor(
     private geoSvc: GeoService,
