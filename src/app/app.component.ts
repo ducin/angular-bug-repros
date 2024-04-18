@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { GeoService } from './api/geo.service';
 import { Nationality } from 'src/app/api/dto';
+import { EmployeeListingFacadeService } from './employees/employee-listing/employee-listing-facade.service';
 
 @Component({
   selector: 'itcorpo-root',
@@ -18,6 +19,7 @@ export class AppComponent {
 
   constructor(
     private geoSvc: GeoService,
+    // private nieTwojaFasada: EmployeeListingFacadeService,
   ){}
 
   ngOnInit(): void {

@@ -16,7 +16,7 @@ export var obj = {
   selector: 'itcorpo-employee-listing',
   templateUrl: './employee-listing.component.html',
   styleUrls: ['./employee-listing.component.css'],
-  providers: [EmployeeListingFacadeService]
+  providers: [EmployeeListingFacadeService] // ElementInjector
 })
 export class EmployeeListingComponent implements OnInit {
   // employees$!: Observable<Employee[]>
@@ -35,20 +35,30 @@ export class EmployeeListingComponent implements OnInit {
   // ) { }
 
   // [X] sharing signal state via services
+  // [X] destroy refs
+  // injection contexts:
+  // - constructor
+  // - manual injection contexts - TOMORROW
+  // takeUntilDestroyed()
   // debugging/watching internals of angular signals
   // default signal equal
   // @Input() vs input()
   // @Output() vs output()
   // @model signal
-  // destroy refs
-  // takeUntilDestroyed()
-  // injection contexts
+
+  // REACTIVE CONTEXT/consumer
+  // - 99% template
+  // - 1% effect
+
 
   onToggleSidebar() {
     this.sidebarCollapsed = !this.sidebarCollapsed
   }
 
   ngOnInit() {
+    effect(() => {
+      console.log('siema mordo', this.facade.employeesCount())
+    })
     // TODO: share() vs shareReplay(1)
     // this.employees$ = this.employeeSvc.getAllEmployees()
     // this.employees$ = this.employeeSvc.getAllEmployees({ nationality: "PL" })

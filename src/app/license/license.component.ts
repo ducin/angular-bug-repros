@@ -3,6 +3,9 @@ import { Component, Input } from '@angular/core';
 import { LicenseService } from '../api/license.service';
 import { Observable } from 'rxjs';
 import { EmployeesService } from '../api/employees.service';
+import { EmployeeListingFacadeService } from '../employees/employee-listing/employee-listing-facade.service';
+
+// w tym komponencie rob imy szajs z DI 🤡
 
 class Dupa {}
 
@@ -12,7 +15,7 @@ class Dupa {}
   styleUrls: ['./license.component.css'],
   providers: [
     EmployeesService,
-    [{ provide: Dupa, useClass: Dupa }]
+    [{ provide: Dupa, useClass: Dupa }],
   ]
 }) 
 export class LicenseComponent {

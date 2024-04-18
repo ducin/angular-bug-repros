@@ -1,11 +1,28 @@
-import { Injectable, computed, effect, inject, signal } from '@angular/core';
+import { DestroyRef, Injectable, computed, effect, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { EmployeesService } from 'src/app/api/employees.service';
+import { injectStreamUtility } from 'src/app/api/streamUtility';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class EmployeeListingFacadeService {
 
-  #employeeSvc = inject(EmployeesService)
+  #employeeSvc = injectStreamUtility()
+  // #employeeSvc = inject(EmployeesService)
+  // #destroyRef = inject(DestroyRef)
+  
+  // constructor(
+  //   private destroyRef: DestroyRef
+  // ){
+  //   // cleanup/destruction:
+  //   this.destroyRef.onDestroy(() => console.log('żegnaj świecie'))
+  //   this.destroyRef.onDestroy(() => console.log('żegnaj świecie po raz drugi'))
+  // }
+
+  // REQUEST (HTTP) jest wywoływane natychmiastowo w toSignal() czyli podczas tworzenia obiektu
+  // GDYBY serwis był globalny, to jest hipotetycznie tworzony WCZEŚNIEJ niż dane trzeba będzie wyświetlić
+  // w efekcie, REQUEST (HTTP) jest wywoływany potencjalnie zanim dane będą wyświetlone
 
   // employees: Signal<Employee[]> = signal([])
   // employees: Signal<Employee[]> = toSignal(this.employeeSvc.getAllEmployees())
