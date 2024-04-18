@@ -26,7 +26,7 @@ city: <itcorpo-dropdown [options]="cities"></itcorpo-dropdown>
   <div>
     page size:
     @for(size of pageSizes; track size){
-      <button [disabled]="pageSize() == size" (click)="pageSize.set(size)">
+      <button [disabled]="pageSize() == size" (click)="setPageSize(size)">
         {{ size }}
       </button>
     }

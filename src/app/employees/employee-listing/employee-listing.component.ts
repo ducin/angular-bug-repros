@@ -48,6 +48,8 @@ export class EmployeeListingComponent implements OnInit {
 
   employeesCount = computed(() => this.employees().length)
 
+  // 16:10
+  // [X] sharing signal state via services
   // debugging/watching internals of angular signals
   // default signal equal
   // @Input() vs input()
@@ -58,14 +60,31 @@ export class EmployeeListingComponent implements OnInit {
   // injection contexts
 
   // client-side pagination
-  pageSize = signal(10)
-  currentPage = signal(1)
-  setNextPage = () => this.currentPage.update(v => v + 1)
-  setPrevPage = () => this.currentPage.update(v => v - 1)
+  #pageSize = signal(10) // writable - private
+  pageSize = this.#pageSize.asReadonly() // readonly - public
+  setPageSize = (size: number) => { // updating API methods - public
+    if (this.#currentPage() > this.totalPages()) {
+      this.#currentPage.set(1)
+    }
+    this.#pageSize.set(size)
+  }
 
-  totalPages = computed(() => Math.ceil(this.employeesCount() / this.pageSize()))
-  prevEnabled = computed(() => this.currentPage() > 1)
-  nextEnabled = computed(() => this.currentPage() < this.totalPages())
+  #currentPage = signal(1)
+  currentPage = this.#currentPage.asReadonly()
+  setNextPage = () => {
+    if(this.nextEnabled()){
+      this.#currentPage.update(v => v + 1)
+    }
+  }
+  setPrevPage = () => {
+    if(this.prevEnabled()){
+      this.#currentPage.update(v => v - 1)
+    }
+  }
+
+  totalPages = computed(() => Math.ceil(this.employeesCount() / this.#pageSize()))
+  prevEnabled = computed(() => this.#currentPage() > 1)
+  nextEnabled = computed(() => this.#currentPage() < this.totalPages())
 
   readonly pageSizes = [10, 25, 50]
 
@@ -73,7 +92,7 @@ export class EmployeeListingComponent implements OnInit {
     const phrase = this.nameFilter().toLowerCase()
     const filtered = this.employees().filter(e =>
       e.firstName.toLowerCase().includes(phrase) || e.lastName.toLowerCase().includes(phrase) )
-    return filtered.slice((this.currentPage() - 1) * this.pageSize(), this.currentPage() * this.pageSize())
+    return filtered.slice((this.#currentPage() - 1) * this.#pageSize(), this.currentPage() * this.pageSize())
   })
 
   displayedCount = computed(() => this.displayedEmployees().length)
