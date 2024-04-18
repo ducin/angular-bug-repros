@@ -15,7 +15,23 @@ city: <itcorpo-dropdown [options]="cities"></itcorpo-dropdown>
 </label>
 
 @if(displayedEmployees().length > 0) {
-  count: {{ displayedEmployees().length }}
+  <div>
+    displaying: {{ displayedCount() }} of total {{ employeesCount() }}
+  </div>
+  <div>
+    <button [disabled]="!prevEnabled()" (click)="setPrevPage()">PREV</button>
+    | {{ currentPage() }} |
+    <button [disabled]="!nextEnabled()" (click)="setNextPage()">NEXT</button>
+  </div>
+  <div>
+    page size:
+    @for(size of pageSizes; track size){
+      <button [disabled]="pageSize() == size" (click)="pageSize.set(size)">
+        {{ size }}
+      </button>
+    }
+  </div>
+
   <ul>
     @for(e of displayedEmployees(); track e.id){
       <li>

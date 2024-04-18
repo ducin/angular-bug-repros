@@ -39,6 +39,53 @@ export class EmployeeListingComponent implements OnInit {
     initialValue: [] // TODO: usunąć []
   })
 
+  nameFilter = signal("")
+
+  updateNameFilter($event: Event){
+    const newValue = ($event.target as HTMLInputElement).value
+    this.nameFilter.set(newValue)
+  }
+
+  employeesCount = computed(() => this.employees().length)
+
+  // debugging/watching internals of angular signals
+  // default signal equal
+  // @Input() vs input()
+  // @Output() vs output()
+  // @model signal
+  // destroy refs
+  // takeUntilDestroyed()
+  // injection contexts
+
+  // client-side pagination
+  pageSize = signal(10)
+  currentPage = signal(1)
+  setNextPage = () => this.currentPage.update(v => v + 1)
+  setPrevPage = () => this.currentPage.update(v => v - 1)
+
+  totalPages = computed(() => Math.ceil(this.employeesCount() / this.pageSize()))
+  prevEnabled = computed(() => this.currentPage() > 1)
+  nextEnabled = computed(() => this.currentPage() < this.totalPages())
+
+  readonly pageSizes = [10, 25, 50]
+
+  displayedEmployees = computed(() => {
+    const phrase = this.nameFilter().toLowerCase()
+    const filtered = this.employees().filter(e =>
+      e.firstName.toLowerCase().includes(phrase) || e.lastName.toLowerCase().includes(phrase) )
+    return filtered.slice((this.currentPage() - 1) * this.pageSize(), this.currentPage() * this.pageSize())
+  })
+
+  displayedCount = computed(() => this.displayedEmployees().length)
+
+  logEffect = effect(() => {
+    console.log("nameFilter:", this.nameFilter())
+  })
+
+  onToggleSidebar() {
+    this.sidebarCollapsed = !this.sidebarCollapsed
+  }
+
   ngOnInit() {
     // TODO: share() vs shareReplay(1)
     // this.employees$ = this.employeeSvc.getAllEmployees()
@@ -68,26 +115,5 @@ export class EmployeeListingComponent implements OnInit {
     // })
 
     // const exchange = computed(() => amount() / rate())
-  }
-
-  nameFilter = signal("")
-
-  updateNameFilter($event: Event){
-    const newValue = ($event.target as HTMLInputElement).value
-    this.nameFilter.set(newValue)
-  }
-
-  displayedEmployees = computed(() => {
-    const phrase = this.nameFilter().toLowerCase()
-    return this.employees().filter(e =>
-        e.firstName.toLowerCase().includes(phrase) || e.lastName.toLowerCase().includes(phrase) )
-  })
-
-  logEffect = effect(() => {
-    console.log("nameFilter:", this.nameFilter())
-  })
-
-  onToggleSidebar() {
-    this.sidebarCollapsed = !this.sidebarCollapsed
   }
 }
