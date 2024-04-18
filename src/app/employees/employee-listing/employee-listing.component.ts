@@ -78,9 +78,9 @@ export class EmployeeListingComponent implements OnInit {
   }
 
   displayedEmployees = computed(() => {
-    const phrase = this.nameFilter()
+    const phrase = this.nameFilter().toLowerCase()
     return this.employees().filter(e =>
-        e.firstName.includes(phrase) || e.lastName.includes(phrase) )
+        e.firstName.toLowerCase().includes(phrase) || e.lastName.toLowerCase().includes(phrase) )
   })
 
   logEffect = effect(() => {
