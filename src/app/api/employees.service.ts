@@ -18,10 +18,8 @@ export function injectMojeSerwisy(){
   return http
 }
 
-// composition over inheritance
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 // TODO:
 // export class EmployeesHTTPService {

@@ -10,8 +10,8 @@
 city: <itcorpo-dropdown [options]="cities"></itcorpo-dropdown>
 {{nameFilter()}}
 <label> name filter:
-  <!-- <input type="text" [value]="nameFilter()" (input)="updateNameFilter($event)"> -->
-  <input type="text" [(value)]="nameFilter">
+  <input type="text" [value]="nameFilter()" (input)="updateNameFilter($event)">
+  <!-- <input type="text" [(value)]="nameFilter"> -->
 </label>
 
 @if(displayedEmployees().length > 0) {

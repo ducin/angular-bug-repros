@@ -10,6 +10,7 @@ import { EmployeeDetailsPageComponent } from './employee-details/employee-detail
 import { EmployeeImageComponent } from './employee-image';
 import { NameAndTitlePipe } from './pipes/name-and-title.pipe';
 import { FlagPipe } from './pipes/flag.pipe';
+import { EmployeesService } from '../api/employees.service';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,9 @@ import { FlagPipe } from './pipes/flag.pipe';
     CommonModule,
     EmployeesRoutingModule,
     SharedModule
+  ],
+  providers: [
+    EmployeesService
   ]
 })
 export class EmployeesModule { }

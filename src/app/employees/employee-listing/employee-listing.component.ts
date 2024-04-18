@@ -7,10 +7,17 @@ import { Employee } from 'src/app/api/dto';
 
 import { EmployeesService } from 'src/app/api/employees.service';
 
+export var obj = {
+  value: signal(0)
+}
+
+// signals - in depth
+
 @Component({
   selector: 'itcorpo-employee-listing',
   templateUrl: './employee-listing.component.html',
-  styleUrls: ['./employee-listing.component.css']
+  styleUrls: ['./employee-listing.component.css'],
+  providers: []
 })
 export class EmployeeListingComponent implements OnInit {
   // employees$!: Observable<Employee[]>
@@ -63,8 +70,8 @@ export class EmployeeListingComponent implements OnInit {
     // const exchange = computed(() => amount() / rate())
   }
 
-  // nameFilter = signal("")
-  nameFilter = model("")
+  nameFilter = signal("")
+
   updateNameFilter($event: Event){
     const newValue = ($event.target as HTMLInputElement).value
     this.nameFilter.set(newValue)
