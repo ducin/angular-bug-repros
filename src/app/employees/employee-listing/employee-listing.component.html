@@ -8,13 +8,20 @@
 <h2>Our Employees</h2>
 
 city: <itcorpo-dropdown [options]="cities"></itcorpo-dropdown>
+{{nameFilter()}}
+<label> name filter:
+  <!-- <input type="text" [value]="nameFilter()" (input)="updateNameFilter($event)"> -->
+  <input type="text" [(value)]="nameFilter">
+</label>
 
-<div *ngIf="employees$ | async as employees">
-  count: {{ employees.length }}
+@if(displayedEmployees().length > 0) {
+  count: {{ displayedEmployees().length }}
   <ul>
-    <li *ngFor="let e of employees">
-      {{ e | nameAndTitle }} {{ e | flag }}
-      (<a routerLink="/employees/{{ e.id }}" routerLinkActive="active">details</a>)
-    </li>
+    @for(e of displayedEmployees(); track e.id){
+      <li>
+        {{ e | nameAndTitle }} {{ e | flag }}
+        (<a routerLink="/employees/{{ e.id }}" routerLinkActive="active">details</a>)
+      </li>
+    }
   </ul>
-</div>
+}

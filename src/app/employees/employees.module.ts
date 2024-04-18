@@ -8,8 +8,8 @@ import { EmployeeListingComponent } from './employee-listing/employee-listing.co
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { EmployeeDetailsPageComponent } from './employee-details/employee-details-page.component';
 import { EmployeeImageComponent } from './employee-image';
-import { NameAndTitlePipe } from './name-and-title.pipe';
-import { FlagPipe } from './flag.pipe';
+import { NameAndTitlePipe } from './pipes/name-and-title.pipe';
+import { FlagPipe } from './pipes/flag.pipe';
 
 @NgModule({
   declarations: [
@@ -27,3 +27,5 @@ import { FlagPipe } from './flag.pipe';
   ]
 })
 export class EmployeesModule { }
+
+export default 1
