@@ -1,4 +1,4 @@
-import { Component, OnInit, computed, signal, effect, untracked, Signal, model } from '@angular/core';
+import { Component, OnInit, computed, signal, effect, untracked, Signal, model, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop'
 
 import { Observable } from 'rxjs';
@@ -6,21 +6,22 @@ import { Observable } from 'rxjs';
 import { Employee } from 'src/app/api/dto';
 
 import { EmployeesService } from 'src/app/api/employees.service';
+import { EmployeeListingFacadeService } from './employee-listing-facade.service';
 
 export var obj = {
   value: signal(0)
 }
 
-// signals - in depth
-
 @Component({
   selector: 'itcorpo-employee-listing',
   templateUrl: './employee-listing.component.html',
   styleUrls: ['./employee-listing.component.css'],
-  providers: []
+  providers: [EmployeeListingFacadeService]
 })
 export class EmployeeListingComponent implements OnInit {
   // employees$!: Observable<Employee[]>
+
+  protected facade = inject(EmployeeListingFacadeService)
 
   sidebarCollapsed: boolean = true
 
@@ -29,26 +30,10 @@ export class EmployeeListingComponent implements OnInit {
     "Lwów": "Lwów",
   }
 
-  constructor(
-    private employeeSvc: EmployeesService,
-  ) { }
+  // constructor(
+  //   private employeeSvc: EmployeesService,
+  // ) { }
 
-  // employees: Signal<Employee[]> = signal([])
-  // employees: Signal<Employee[]> = toSignal(this.employeeSvc.getAllEmployees())
-  employees = toSignal(this.employeeSvc.getAllEmployees(), {
-    initialValue: [] // TODO: usunąć []
-  })
-
-  nameFilter = signal("")
-
-  updateNameFilter($event: Event){
-    const newValue = ($event.target as HTMLInputElement).value
-    this.nameFilter.set(newValue)
-  }
-
-  employeesCount = computed(() => this.employees().length)
-
-  // 16:10
   // [X] sharing signal state via services
   // debugging/watching internals of angular signals
   // default signal equal
@@ -58,48 +43,6 @@ export class EmployeeListingComponent implements OnInit {
   // destroy refs
   // takeUntilDestroyed()
   // injection contexts
-
-  // client-side pagination
-  #pageSize = signal(10) // writable - private
-  pageSize = this.#pageSize.asReadonly() // readonly - public
-  setPageSize = (size: number) => { // updating API methods - public
-    if (this.#currentPage() > this.totalPages()) {
-      this.#currentPage.set(1)
-    }
-    this.#pageSize.set(size)
-  }
-
-  #currentPage = signal(1)
-  currentPage = this.#currentPage.asReadonly()
-  setNextPage = () => {
-    if(this.nextEnabled()){
-      this.#currentPage.update(v => v + 1)
-    }
-  }
-  setPrevPage = () => {
-    if(this.prevEnabled()){
-      this.#currentPage.update(v => v - 1)
-    }
-  }
-
-  totalPages = computed(() => Math.ceil(this.employeesCount() / this.#pageSize()))
-  prevEnabled = computed(() => this.#currentPage() > 1)
-  nextEnabled = computed(() => this.#currentPage() < this.totalPages())
-
-  readonly pageSizes = [10, 25, 50]
-
-  displayedEmployees = computed(() => {
-    const phrase = this.nameFilter().toLowerCase()
-    const filtered = this.employees().filter(e =>
-      e.firstName.toLowerCase().includes(phrase) || e.lastName.toLowerCase().includes(phrase) )
-    return filtered.slice((this.#currentPage() - 1) * this.#pageSize(), this.currentPage() * this.pageSize())
-  })
-
-  displayedCount = computed(() => this.displayedEmployees().length)
-
-  logEffect = effect(() => {
-    console.log("nameFilter:", this.nameFilter())
-  })
 
   onToggleSidebar() {
     this.sidebarCollapsed = !this.sidebarCollapsed

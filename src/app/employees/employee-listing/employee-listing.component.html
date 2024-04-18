@@ -8,32 +8,32 @@
 <h2>Our Employees</h2>
 
 city: <itcorpo-dropdown [options]="cities"></itcorpo-dropdown>
-{{nameFilter()}}
+{{facade.nameFilter()}}
 <label> name filter:
-  <input type="text" [value]="nameFilter()" (input)="updateNameFilter($event)">
+  <input type="text" [value]="facade.nameFilter()" (input)="facade.updateNameFilter($event)">
   <!-- <input type="text" [(value)]="nameFilter"> -->
 </label>
 
-@if(displayedEmployees().length > 0) {
+@if(facade.displayedEmployees().length > 0) {
   <div>
-    displaying: {{ displayedCount() }} of total {{ employeesCount() }}
+    displaying: {{ facade.displayedCount() }} of total {{ facade.employeesCount() }}
   </div>
   <div>
-    <button [disabled]="!prevEnabled()" (click)="setPrevPage()">PREV</button>
-    | {{ currentPage() }} |
-    <button [disabled]="!nextEnabled()" (click)="setNextPage()">NEXT</button>
+    <button [disabled]="!facade.prevEnabled()" (click)="facade.setPrevPage()">PREV</button>
+    | {{ facade.currentPage() }} |
+    <button [disabled]="!facade.nextEnabled()" (click)="facade.setNextPage()">NEXT</button>
   </div>
   <div>
     page size:
-    @for(size of pageSizes; track size){
-      <button [disabled]="pageSize() == size" (click)="setPageSize(size)">
+    @for(size of facade.pageSizes; track size){
+      <button [disabled]="facade.pageSize() == size" (click)="facade.setPageSize(size)">
         {{ size }}
       </button>
     }
   </div>
 
   <ul>
-    @for(e of displayedEmployees(); track e.id){
+    @for(e of facade.displayedEmployees(); track e.id){
       <li>
         {{ e | nameAndTitle }} {{ e | flag }}
         (<a routerLink="/employees/{{ e.id }}" routerLinkActive="active">details</a>)
