@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, computed, input } from '@angular/core';
 import { Benefit } from 'src/app/api/dto';
 
 @Component({
@@ -7,6 +7,17 @@ import { Benefit } from 'src/app/api/dto';
   styleUrls: ['./benefit-details.component.css']
 })
 export class BenefitDetailsComponent {
-  @Input()
-  benefit!: Benefit
+  // @Input({ required: true })
+  // benefit!: Benefit
+
+  benefit = input.required<Benefit>()
+  // benefit = input<Benefit>()
+
+  constructor(){
+    // this.benefit() // wywołujemy input za wcześnie
+  }
+
+  yearlyFee = computed(() => {
+    return this.benefit().monthlyFee * 12
+  })
 }

@@ -15,7 +15,7 @@ export class EmployeeDataProviderService {
   // Server State
   employees = toSignal(this.#employeeSvc.getAllEmployees(), {
     // injector, 
-    initialValue: [] // TODO: usunąć []
+    initialValue: [], // TODO: usunąć []
   })
 
   // a co z logiką odświeżania danych?!?!?!

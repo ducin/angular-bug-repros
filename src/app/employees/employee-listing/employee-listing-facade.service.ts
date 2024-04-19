@@ -70,6 +70,7 @@ export class EmployeeListingFacadeService {
   #currentPage = signal(1)
   currentPage = this.#currentPage.asReadonly() // public read
   setNextPage = () => { // public updaters które chronią reguły
+    debugger
     if(this.nextEnabled()){
       this.#currentPage.update(v => v + 1)
     }
