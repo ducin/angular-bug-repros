@@ -34,23 +34,6 @@ export class EmployeeListingComponent implements OnInit {
   //   private employeeSvc: EmployeesService,
   // ) { }
 
-  // [X] sharing signal state via services
-  // [X] destroy refs
-  // injection contexts:
-  // - constructor
-  // - manual injection contexts - TOMORROW
-  // takeUntilDestroyed()
-  // debugging/watching internals of angular signals
-  // default signal equal
-  // @Input() vs input()
-  // @Output() vs output()
-  // @model signal
-
-  // REACTIVE CONTEXT/consumer
-  // - 99% template
-  // - 1% effect
-
-
   onToggleSidebar() {
     this.sidebarCollapsed = !this.sidebarCollapsed
   }
