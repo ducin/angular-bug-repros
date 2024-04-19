@@ -4,7 +4,11 @@
   count: {{ benefits.length }}
   <ul>
     <li *ngFor="let b of benefits">
-      <itcorpo-benefit-details [benefit]="b" (remove)="removeBenefit($event)" />
+      <itcorpo-benefit-details
+        [benefit]="b"
+        [(show)]="showDetails"
+        (remove)="removeBenefit($event)"
+      />
     </li>
   </ul>
 </div>

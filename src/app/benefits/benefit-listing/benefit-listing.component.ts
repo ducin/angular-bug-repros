@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { BenefitsService } from 'src/app/api/benefits.service';
 
 import { Observable } from 'rxjs';
@@ -25,4 +25,5 @@ export class BenefitListingComponent implements OnInit {
     alert(id)
   }
 
+  showDetails = signal(true)
 }
