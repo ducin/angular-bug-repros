@@ -27,7 +27,8 @@ import { EmployeesService } from '../api/employees.service';
     SharedModule
   ],
   providers: [
-    EmployeesService
+    EmployeesService,
+    // ______
   ]
 })
 export class EmployeesModule { }

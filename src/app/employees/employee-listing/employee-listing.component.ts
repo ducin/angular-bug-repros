@@ -1,4 +1,4 @@
-import { Component, OnInit, computed, signal, effect, untracked, Signal, model, inject } from '@angular/core';
+import { Component, OnInit, computed, signal, effect, untracked, Signal, model, inject, Injector } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop'
 
 import { Observable } from 'rxjs';
@@ -30,6 +30,11 @@ export class EmployeeListingComponent implements OnInit {
     "Lwów": "Lwów",
   }
 
+  // absurdalny overkill:
+  // getDisplayedEmployeed(){
+  //   return this.facade.displayedEmployees()
+  // }
+
   // constructor(
   //   private employeeSvc: EmployeesService,
   // ) { }
@@ -38,10 +43,18 @@ export class EmployeeListingComponent implements OnInit {
     this.sidebarCollapsed = !this.sidebarCollapsed
   }
 
+  #injector = inject(Injector) // Twój lokalny injector
+  
+  // effectRef = effect(() => {
+  //   console.log('siema mordo', this.facade.employeesCount())
+  // })
+
   ngOnInit() {
+    // this.effectRef.destroy() // rozwal ręcznie
+    // jeśli cokolwiek potrzebuje injectora
     effect(() => {
       console.log('siema mordo', this.facade.employeesCount())
-    })
+    }, { injector: this.#injector })
     // TODO: share() vs shareReplay(1)
     // this.employees$ = this.employeeSvc.getAllEmployees()
     // this.employees$ = this.employeeSvc.getAllEmployees({ nationality: "PL" })
@@ -72,3 +85,4 @@ export class EmployeeListingComponent implements OnInit {
     // const exchange = computed(() => amount() / rate())
   }
 }
+

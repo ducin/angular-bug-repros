@@ -1,10 +1,18 @@
-import { DestroyRef, inject } from "@angular/core";
+import { DestroyRef, assertInInjectionContext, runInInjectionContext, inject, Injector } from "@angular/core";
 import { EmployeesService } from "./employees.service";
 
+// co robi effect, toSignal i pierdyliard bibliotek:
+function zrobCos(arg: unknown, options?: { injector?: Injector }){
+    // assertInInjectionContext(zrobCos) // <- to powinno być w IFie tylko tam gdzie 
+    const injector: Injector = options?.injector ?? inject(Injector)
+}
+
 // pattern
-// TODO: assertInInjectionContext
+// TODO: assertInInjectionContext -> upewnij się ŻE (jesteś w kontekście wstrzykiwania)
+// TODO: runInInjectionContext
 
 export function injectStreamUtility(){
+    assertInInjectionContext(injectStreamUtility)
     const destroyRef = inject(DestroyRef)
     // kiedy to jest niszczone - zależy
     // - zależy od tego KIEDy injector jest niszczony

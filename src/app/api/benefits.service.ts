@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { apiURL } from './config';
@@ -12,6 +12,8 @@ export class BenefitsService {
   constructor(
     private http: HttpClient
   ) { }
+
+  #injector = inject(Injector) // root injector
 
   deleteBenefit(id: Benefit['id']) {
     return this.http.delete(`${apiURL}/benefits/${id}`)

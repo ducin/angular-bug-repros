@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 
 import { LicenseService } from '../api/license.service';
 import { Observable } from 'rxjs';
@@ -20,6 +20,8 @@ class Dupa {}
 }) 
 export class LicenseComponent {
   content$!: Observable<string | null>;
+
+  // protected facade = inject(EmployeeListingFacadeService)
 
   constructor(
     private licenseSvc: LicenseService,

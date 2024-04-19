@@ -1,14 +1,29 @@
-import { DestroyRef, Injectable, computed, effect, inject, signal } from '@angular/core';
+import { DestroyRef, Injectable, Injector, computed, effect, inject, runInInjectionContext, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { EmployeesService } from 'src/app/api/employees.service';
 import { injectStreamUtility } from 'src/app/api/streamUtility';
+import { EmployeeDataProviderService } from 'src/app/data-providers/employee-data-provider.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+// surowe serwisy są spoko w mniejszej skali
+// jeśli to się zacznie rozrastać - rozważamy przejście na ngrx SIGNAL store
+// (nie stary ngrx rxjs-owy 🤮)
+//  jakie mamy korzyści z SIGNAL store?
+// - większy porządek
+// - kompozycja (większy store'a zawiera w sobie reuzywalne mniejsze store'y)
+
+// @Injectable({
+//   providedIn: 'root'
+// })
+@Injectable()
 export class EmployeeListingFacadeService {
 
+  #injector = inject(Injector)
   #employeeSvc = injectStreamUtility()
+
+  // gdyby to był komponent ;)
+  ngOnInit(){
+    this.#employeeSvc = runInInjectionContext(this.#injector, injectStreamUtility)
+  }
   // #employeeSvc = inject(EmployeesService)
   // #destroyRef = inject(DestroyRef)
   
@@ -26,10 +41,11 @@ export class EmployeeListingFacadeService {
 
   // employees: Signal<Employee[]> = signal([])
   // employees: Signal<Employee[]> = toSignal(this.employeeSvc.getAllEmployees())
-  employees = toSignal(this.#employeeSvc.getAllEmployees(), {
-    initialValue: [] // TODO: usunąć []
-  })
 
+  #employeeProvider = inject(EmployeeDataProviderService)
+  employees = this.#employeeProvider.employees // Single Source of Truth
+
+  // Local State
   nameFilter = signal("", { equal: (a, b) => Object.is(a, b)})
   // nameFilter = signal("", { equal: Object.is })
 
@@ -38,6 +54,7 @@ export class EmployeeListingFacadeService {
     this.nameFilter.set(newValue)
   }
 
+  // Server State Derivation
   employeesCount = computed(() => this.employees().length)
 
   // client-side pagination
@@ -51,8 +68,8 @@ export class EmployeeListingFacadeService {
   }
 
   #currentPage = signal(1)
-  currentPage = this.#currentPage.asReadonly()
-  setNextPage = () => {
+  currentPage = this.#currentPage.asReadonly() // public read
+  setNextPage = () => { // public updaters które chronią reguły
     if(this.nextEnabled()){
       this.#currentPage.update(v => v + 1)
     }
