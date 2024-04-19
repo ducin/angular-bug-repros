@@ -30,7 +30,8 @@ export class EmployeeListingFacadeService {
     initialValue: [] // TODO: usunąć []
   })
 
-  nameFilter = signal("")
+  nameFilter = signal("", { equal: (a, b) => Object.is(a, b)})
+  // nameFilter = signal("", { equal: Object.is })
 
   updateNameFilter($event: Event){
     const newValue = ($event.target as HTMLInputElement).value
