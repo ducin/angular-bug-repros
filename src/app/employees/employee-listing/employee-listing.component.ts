@@ -7,6 +7,7 @@ import { Employee } from 'src/app/api/dto';
 
 import { EmployeesService } from 'src/app/api/employees.service';
 import { EmployeeListingFacadeService } from './employee-listing-facade.service';
+import { employeeListingStore } from './employee-listing-signal-store';
 
 export var obj = {
   value: signal(0)
@@ -22,6 +23,7 @@ export class EmployeeListingComponent implements OnInit {
   // employees$!: Observable<Employee[]>
 
   protected facade = inject(EmployeeListingFacadeService)
+  protected store = inject(employeeListingStore)
 
   sidebarCollapsed: boolean = true
 
