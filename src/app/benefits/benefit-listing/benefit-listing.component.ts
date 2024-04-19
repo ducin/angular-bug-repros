@@ -21,4 +21,8 @@ export class BenefitListingComponent implements OnInit {
     this.benefits$ = this.benefitSvc.getAllBenefits()
   }
 
+  removeBenefit(id: Benefit['id']){
+    alert(id)
+  }
+
 }
