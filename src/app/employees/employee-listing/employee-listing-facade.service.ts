@@ -46,7 +46,8 @@ export class EmployeeListingFacadeService {
   employees = this.#employeeProvider.employees // Single Source of Truth
 
   // Local State
-  nameFilter = signal("", { equal: (a, b) => Object.is(a, b)})
+  // nameFilter = signal("", { equal: (a, b) => Object.is(a, b)})
+  nameFilter = signal("")
   // nameFilter = signal("", { equal: Object.is })
 
   updateNameFilter($event: Event){

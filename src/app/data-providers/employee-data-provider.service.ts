@@ -18,7 +18,7 @@ export class EmployeeDataProviderService {
     initialValue: [], // TODO: usunąć []
   })
 
-  // a co z logiką odświeżania danych?!?!?!
+  // a co z logiką odświeżania danych?!
 
-  // aco z rozróżnieniem na dane-listingi i dane-detale pojedynczego rekordu
+  // a co z rozróżnieniem na dane-listingi i dane-detale pojedynczego rekordu?!
 }

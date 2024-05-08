@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { ProjectsService } from 'src/app/api/projects.service';
 
 import { Observable } from 'rxjs';
@@ -20,5 +20,7 @@ export class ProjectListingComponent implements OnInit {
   ngOnInit() {
     this.projects$ = this.projectSvc.getAllProjects()
   }
+
+  value = signal('')
 
 }

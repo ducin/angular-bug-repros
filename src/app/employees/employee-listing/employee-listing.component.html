@@ -1,9 +1,8 @@
-<itcorpo-sidebar [(collapsed)]="sidebarCollapsed">
+<!-- <itcorpo-sidebar [(collapsed)]="sidebarCollapsed">
   RECENTLY VIEWED EMPLOYEES DISPLAYED HERE
 </itcorpo-sidebar>
 
 <span (click)="onToggleSidebar()" class="icon">📖</span>
-<!-- <itcorpo-round-button (clicked)="onToggleSidebar()"></itcorpo-round-button> -->
 
 <h2>Our Employees</h2>
 
@@ -11,10 +10,8 @@ city: <itcorpo-dropdown [options]="cities"></itcorpo-dropdown>
 {{facade.nameFilter()}}
 <label> name filter:
   <input type="text" [value]="facade.nameFilter()" (input)="facade.updateNameFilter($event)">
-  <!-- <input type="text" [(value)]="nameFilter"> -->
 </label>
 
-<!-- {{ facade.displayedEmployee() ? cuda wianki : 'uje muje dzikie węże' }} -->
 
 @if(facade.displayedEmployees().length > 0) {
   <div>
@@ -42,4 +39,4 @@ city: <itcorpo-dropdown [options]="cities"></itcorpo-dropdown>
       </li>
     }
   </ul>
-}
+} -->

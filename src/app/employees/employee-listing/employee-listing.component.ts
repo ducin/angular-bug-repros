@@ -17,13 +17,16 @@ export var obj = {
   selector: 'itcorpo-employee-listing',
   templateUrl: './employee-listing.component.html',
   styleUrls: ['./employee-listing.component.css'],
-  providers: [EmployeeListingFacadeService] // ElementInjector
+  providers: [
+    // EmployeeListingFacadeService,
+    // employeeListingStore
+  ] // ElementInjector
 })
 export class EmployeeListingComponent implements OnInit {
   // employees$!: Observable<Employee[]>
 
-  protected facade = inject(EmployeeListingFacadeService)
-  protected store = inject(employeeListingStore)
+  // protected facade = inject(EmployeeListingFacadeService)
+  // protected store = inject(employeeListingStore)
 
   sidebarCollapsed: boolean = true
 
@@ -55,7 +58,7 @@ export class EmployeeListingComponent implements OnInit {
     // this.effectRef.destroy() // rozwal ręcznie
     // jeśli cokolwiek potrzebuje injectora
     effect(() => {
-      console.log('siema mordo', this.facade.employeesCount())
+      // console.log('siema mordo', this.facade.employeesCount())
     }, { injector: this.#injector })
     // TODO: share() vs shareReplay(1)
     // this.employees$ = this.employeeSvc.getAllEmployees()
