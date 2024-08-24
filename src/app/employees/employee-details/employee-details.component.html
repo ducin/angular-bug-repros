@@ -1,0 +1,20 @@
+<h2>{{ employee.firstName }} {{ employee.lastName }} (age: {{ employee.personalInfo.age }})</h2>
+
+<itcorpo-employee-image [employee]="employee"></itcorpo-employee-image>
+
+<div>
+  {{ employee.title }},
+  earning {{ employee.salary | currency:"EUR" }},
+  hired: {{ employee.hiredAt | date }}
+
+  <div>
+    office: {{ employee.office.join(', ') }}
+  </div>
+
+  <h3>Skills</h3>
+  <ul>
+    <li *ngFor="let skill of employee.skills">{{ skill }}</li>
+  </ul>
+
+  <a href="mailto:{{ employee.personalInfo.email }}"></a>
+</div>

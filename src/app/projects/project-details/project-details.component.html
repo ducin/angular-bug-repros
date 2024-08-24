@@ -1,0 +1,14 @@
+<strong>{{ project.name }}</strong>
+
+<div>
+  since {{ project.startDate | date }},
+  until {{ project.endDate | date }},
+  team size {{ project.team.length }},
+</div>
+<div>
+  <strong>budget</strong>: {{ project.budget | currency:"EUR" }}
+</div>
+<p>
+  {{ project.description }}
+</p>
+<itcorpo-image [src]="url()"></itcorpo-image>

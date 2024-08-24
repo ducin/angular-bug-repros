@@ -1,0 +1,17 @@
+<h2>IT Corpo Finances</h2>
+
+<!--
+  <div>
+  <strong>total monthly expenses: {{ monthlyCost$ | async | currency:"EUR" }}</strong>
+</div>
+
+<div>
+  <strong>total yearly expenses: {{ yearlyCost$ | async | currency:"EUR" }}</strong>
+</div>
+-->
+
+<itcorpo-table [headers]="table.headers" [rows]="table.rows"></itcorpo-table>
+
+<hr />
+
+<itcorpo-expenses-listing [expenses]="(expenses$ | async)!"></itcorpo-expenses-listing>

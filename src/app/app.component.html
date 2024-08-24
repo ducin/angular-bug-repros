@@ -1,0 +1,20 @@
+<div>
+  <strong>{{title}}</strong>
+</div>
+
+<itcorpo-fadebox>
+  notification message goes here
+</itcorpo-fadebox>
+
+<nav>
+  <a class="menu-link" routerLink="/" routerLinkActive="active">🏠 Home</a> |
+  <a class="menu-link" routerLink="/finances" routerLinkActive="active">💰 Finances</a> |
+  <a class="menu-link" routerLink="/offices" routerLinkActive="active">🏢 Offices</a> |
+  <a class="menu-link" routerLink="/projects" routerLinkActive="active">🔨 Projects</a> |
+  <a class="menu-link" routerLink="/employees" routerLinkActive="active">👩‍💼 Employees</a> |
+  <a class="menu-link" routerLink="/benefits" routerLinkActive="active">🎳 Benefits</a> |
+
+  <itcorpo-dropdown [options]="(geoData$ | async)!"></itcorpo-dropdown>
+</nav>
+
+<router-outlet></router-outlet>

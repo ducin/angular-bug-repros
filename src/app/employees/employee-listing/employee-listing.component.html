@@ -1,0 +1,20 @@
+<itcorpo-sidebar [(collapsed)]="sidebarCollapsed">
+  RECENTLY VIEWED EMPLOYEES DISPLAYED HERE
+</itcorpo-sidebar>
+
+<span (click)="onToggleSidebar()" class="icon">📖</span>
+<!-- <itcorpo-round-button (clicked)="onToggleSidebar()"></itcorpo-round-button> -->
+
+<h2>Our Employees</h2>
+
+city: <itcorpo-dropdown [options]="cities"></itcorpo-dropdown>
+
+<div *ngIf="employees$ | async as employees">
+  count: {{ employees.length }}
+  <ul>
+    <li *ngFor="let e of employees">
+      {{ e | nameAndTitle }} {{ e | flag }}
+      (<a routerLink="/employees/{{ e.id }}" routerLinkActive="active">details</a>)
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,6 @@
+<select (change)="onChange($event)">
+  <ng-container *ngIf="entries">
+    <option></option>
+    <option *ngFor="let e of entries" value="{{ e.key }}">{{ e.value }}</option>
+  </ng-container>
+</select>

@@ -1,0 +1,6 @@
+<div>
+  {{ benefit.country }}, {{ benefit.city }},
+  service: {{ benefit.service }},
+  fee: {{ benefit.monthlyFee | currency:"EUR" }},
+  since: {{ benefit.subscribedAtDate | date }}
+</div>
