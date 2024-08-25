@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { inject, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SharedModule } from '../shared/shared.module';
@@ -10,6 +10,8 @@ import { EmployeeDetailsPageComponent } from './employee-details/employee-detail
 import { EmployeeImageComponent } from './employee-image';
 import { NameAndTitlePipe } from './name-and-title.pipe';
 import { FlagPipe } from './flag.pipe';
+import { EmployeesService } from '../api/employees.service';
+import { HttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,17 @@ import { FlagPipe } from './flag.pipe';
     NameAndTitlePipe,
     FlagPipe,
   ],
+  // 👇 HERE
+  providers: [{
+    provide: EmployeesService,
+    useFactory: () => {
+      const http = inject(HttpClient)
+      const svc = new EmployeesService(http)
+      svc.origin = 'employees.module'
+      return svc
+    }
+  }],
+  // 👆 HERE
   imports: [
     CommonModule,
     EmployeesRoutingModule,

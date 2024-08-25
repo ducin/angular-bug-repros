@@ -16,6 +16,8 @@ export type EmployeeCriteria = {
 })
 export class EmployeesService {
 
+  origin = 'root'
+
   constructor(
     private http: HttpClient
   ) { }

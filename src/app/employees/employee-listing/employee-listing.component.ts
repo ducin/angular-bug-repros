@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
+import { BenefitsService } from 'src/app/api/benefits.service';
 
 import { Employee } from 'src/app/api/dto';
 
@@ -22,7 +23,7 @@ export class EmployeeListingComponent implements OnInit {
   }
 
   constructor(
-    private employeeSvc: EmployeesService,
+    private employeeSvc: EmployeesService
   ) { }
 
   ngOnInit() {
